@@ -20,19 +20,19 @@ class Controller {
         
         switch ($this->action) {
             case 'show_home_page':
-                include('./view/home.php');
+                $this->view->display("home.tpl");
                 break;
             case 'show_catalog_page':
                 $book_catalog = $this->model->getBookCatalog();
                 $default_image = "model/images/book_default.jpg";
-                // STEP 8 $this->view->display(‘catalog.tpl')
+                $this->view->display("catalog.tpl");
                 break;
             case 'show_login_page':
-                include('./view/login.php');
+                $this->view->display("login.tpl");
                 break;
             case 'show_contact_page':
                 $libraries = $this->model->getLibraries();
-                include('./view/contact.php');
+                $this->view->display("contact.tpl");
                 break;
             case 'process_contact_form':
                 $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
@@ -41,10 +41,10 @@ class Controller {
                 $date = filter_input(INPUT_POST, 'date', FILTER_SANITIZE_STRING);
                 $library = filter_input(INPUT_POST, 'library', FILTER_SANITIZE_STRING);
                 $comments = filter_input(INPUT_POST, 'comments', FILTER_SANITIZE_STRING);
-                include('./view/confirmcontact.php');
+                $this->view->display("confirmcontact.tpl");
                 break;
             default:
-                include('./view/error.php');
+                $this->view->display("error.tpl");
                 break;
         }
     }
