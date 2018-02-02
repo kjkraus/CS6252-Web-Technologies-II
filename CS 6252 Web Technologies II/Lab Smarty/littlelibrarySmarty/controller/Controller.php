@@ -25,6 +25,8 @@ class Controller {
             case 'show_catalog_page':
                 $book_catalog = $this->model->getBookCatalog();
                 $default_image = "model/images/book_default.jpg";
+                $this->view->assign('book_catalog', $book_catalog); 
+                $this->view->assign('default_image', $default_image); 
                 $this->view->display("catalog.tpl");
                 break;
             case 'show_login_page':
@@ -32,6 +34,7 @@ class Controller {
                 break;
             case 'show_contact_page':
                 $libraries = $this->model->getLibraries();
+                $this->view->assign('libraries', $libraries); 
                 $this->view->display("contact.tpl");
                 break;
             case 'process_contact_form':
@@ -41,6 +44,12 @@ class Controller {
                 $date = filter_input(INPUT_POST, 'date', FILTER_SANITIZE_STRING);
                 $library = filter_input(INPUT_POST, 'library', FILTER_SANITIZE_STRING);
                 $comments = filter_input(INPUT_POST, 'comments', FILTER_SANITIZE_STRING);
+                $this->view->assign('name', $name);
+                $this->view->assign('email', $email);
+                $this->view->assign('phone', $phone); 
+                $this->view->assign('date', $date);
+                $this->view->assign('library', $library); 
+                $this->view->assign('comments', $comments);
                 $this->view->display("confirmcontact.tpl");
                 break;
             default:

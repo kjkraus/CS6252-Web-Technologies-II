@@ -15,11 +15,7 @@
 		<label for="idDate">Date: </label>
 		<input type="date" id="idDate" name="date">
 		<label for="idLibraries">Select Library:</label>
-		<select  id="idLibraries" name="library">
-			<?php foreach ($libraries as $library) { ?>
-				<option value="<?php echo $library?>"><?php echo $library?></option>
-			<?php }?>
-		</select>
+		{html_options name=library values=$libraries output=$libraries  id=idLibraries}
 		<label for="idComments">* Comments: </label>
 		<textarea id="myComments" name="comments" rows="2" cols="20" required="required"></textarea>
 		<input type="submit" value="Send Now" id="idSubmit">
