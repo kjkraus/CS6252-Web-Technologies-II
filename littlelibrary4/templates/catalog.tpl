@@ -15,6 +15,7 @@
                 </form>
                 <form action="index.php" id="deletebook" method="post">
                 	<input type="hidden" name="action" value="delete_book">
+                	<input type="hidden" name="book_id" value="{$book->getID()}">
                 	<input type="submit" value="Delete" id="idSubmitDelete">
                 </form>
 			</td>

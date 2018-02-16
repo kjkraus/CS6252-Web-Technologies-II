@@ -7,8 +7,8 @@ class LibraryDB {
 	 */
 	public function __construct() {
 		$dsn = 'mysql:host=localhost;dbname=little_library';
-		$username = 'root';
-		$password = 'erik2672';
+		$username = 'librarian';
+		$password = 'b00kw0rm';
 
 		try {
 			$this->db = new PDO($dsn, $username, $password);
@@ -64,34 +64,11 @@ class LibraryDB {
 	    $statement->execute();
 	    $book_record = $statement->fetch();
 	    $statement->closeCursor();
-	    // check if query was successful
+	    // check if query was successfule
 	    if ($book_record == False) {
 	        return Null;
 	    }
 	    $book = new Book($book_record);    
-	    return $book;
-	}
-	
-	/**
-	 * delete the book with the specified id
-	 *
-	 * @param $book_id id of book to be deleted
-	 * @return boolean True if the delete operation was successful, False otherwise
-	 */
-	public function deleteBook($book_id) {
-	    // create the query
-	    $query = "DELETE * FROM books
-				  WHERE bookId = :book_id";
-	    $statement = $this->db->prepare($query);
-	    $statement->bindValue(':book_id', $book_id);
-	    $statement->execute();
-	    $book_record = $statement->fetch();
-	    $statement->closeCursor();
-	    // check if query was successful
-	    if ($book_record == False) {
-	        return Null;
-	    }
-	    $book = new Book($book_record);
 	    return $book;
 	}
 	
@@ -126,7 +103,28 @@ class LibraryDB {
 	    $statement->bindValue(':pages', $pages);
 	    $statement->bindValue(':publisher', $publisher);
 	    $statement->bindValue(':cost', $cost);
-	    $statement->bindValue(':bookId', $book_id);
+	    $statement->bindValue(':book_id', $book_id);
+	    $statement->execute();
+	    $row_count = $statement->rowCount();
+	    $statement->closeCursor();
+	    if ($row_count == 0) {
+	        var_dump("false");
+	        return False;
+	    }
+	    return True;
+	}
+	
+	/**
+	 * remove the specified book record
+	 *
+	 * @param $book_id
+	 * @return boolean True if the update operation was successful, False otherwise
+	 */
+	public function removeBook($book_id) {
+	    $query = "DELETE FROM books
+				  WHERE bookId = :book_id";
+	    $statement = $this->db->prepare($query);
+	    $statement->bindValue(':book_id', $book_id);
 	    $statement->execute();
 	    $row_count = $statement->rowCount();
 	    $statement->closeCursor();
@@ -155,6 +153,29 @@ class LibraryDB {
 	        $libraries[$library['libraryID']] = $library['libraryName'];
 	    }
 	    return $libraries;
+	}
+	
+	/**
+	 * retrieve the library name with the specified id
+	 *
+	 * @param $library_id id of library to be retrieved
+	 * @return NULL|Library return Null upon failure, return the library object otherwise
+	 */
+	public function getLibrary($library_id) {
+	    // create the query
+	    $query = "SELECT libraryName FROM libraries
+				  WHERE libraryId = :library_id";
+	    $statement = $this->db->prepare($query);
+	    $statement->bindValue(':library_id', $library_id);
+	    $statement->execute();
+	    $library = $statement->fetch();
+	    $statement->closeCursor();
+	    $library = $library['libraryName'];
+	    // check if query was successful
+	    if ($library == False) {
+	        return Null;
+	    }
+	    return $library;
 	}
 
 	/**

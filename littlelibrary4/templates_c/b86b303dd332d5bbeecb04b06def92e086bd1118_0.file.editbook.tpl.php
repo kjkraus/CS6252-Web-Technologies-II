@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2018-02-14 02:53:13
+/* Smarty version 3.1.30, created on 2018-02-16 01:59:00
   from "C:\xampp\htdocs\littlelibrary4\templates\editbook.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5a839689c0d4f8_12200466',
+  'unifunc' => 'content_5a862cd45f4732_63622383',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b86b303dd332d5bbeecb04b06def92e086bd1118' => 
     array (
       0 => 'C:\\xampp\\htdocs\\littlelibrary4\\templates\\editbook.tpl',
-      1 => 1518572338,
+      1 => 1518742737,
       2 => 'file',
     ),
   ),
@@ -24,7 +24,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:shared/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5a839689c0d4f8_12200466 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a862cd45f4732_63622383 (Smarty_Internal_Template $_smarty_tpl) {
 if (!is_callable('smarty_function_html_options')) require_once 'C:\\xampp\\htdocs\\smarty\\libs\\plugins\\function.html_options.php';
 $_smarty_tpl->_subTemplateRender("file:shared/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
@@ -37,7 +37,7 @@ $_smarty_tpl->_subTemplateRender("file:shared/head.tpl", $_smarty_tpl->cache_id,
 
 
 <main>
-	<h2>Contact Us</h2>
+	<h2>Edit Book</h2>
 	<form method="post" id="editbookform" action="index.php">
 		<input type="hidden" id="idHidden" name="action" value="update_book" >
 		<input type="hidden" id="idID" name="id" value="<?php echo $_smarty_tpl->tpl_vars['id']->value;?>

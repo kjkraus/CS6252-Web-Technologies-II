@@ -3,7 +3,7 @@
 {include file='shared/nav.tpl'}
 
 <main>
-	<h2>Contact Us</h2>
+	<h2>Edit Book</h2>
 	<form method="post" id="editbookform" action="index.php">
 		<input type="hidden" id="idHidden" name="action" value="update_book" >
 		<input type="hidden" id="idID" name="id" value="{$id}">

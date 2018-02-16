@@ -40,11 +40,14 @@ class Controller {
             case 'edit_book_form':
                 $this->showEditBookForm();
                 break;
+            case 'delete_book':
+                $this->showDeleteBookForm();
+                break;
+            case 'remove_book':
+                $this->removeBook();
+                break;
             case 'update_book':
                 $this->updateBook();
-                break;
-            case 'delete_book':
-                $this->deleteBook();
                 break;
             case 'show_catalog_page':
                 $this->showCatalogPage();
@@ -95,6 +98,28 @@ class Controller {
         $this->view->display('editbook.tpl');
     }
     
+    private function showDeleteBookForm() {
+        $book_id = filter_input(INPUT_POST, 'book_id', FILTER_SANITIZE_STRING);
+        
+        $book = $this->library_db->getBook($book_id);
+        $libraries = $this->library_db->getLibraries();
+        $categories = $this->library_db->getCategories();
+        
+        $this->view->assign('id', $book->getID());
+        $this->view->assign('title', $book->getTitle());
+        $this->view->assign('author', $book->getAuthor());
+        $this->view->assign('categoryID', $book->getCategoryID());
+        $this->view->assign('libraryID', $book->getLibraryID());
+        $this->view->assign('image', $book->getImage());
+        $this->view->assign('pages', $book->getPages());
+        $this->view->assign('publisher', $book->getPublisher());
+        $this->view->assign('cost', $book->getCost());
+        
+        $this->view->assign('categories', $categories);
+        $this->view->assign('libraries', $libraries);
+        $this->view->display('deletebook.tpl');
+    }
+    
     private function updateBook() {
         $book_id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_STRING);
         $title = trim(filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING));
@@ -110,9 +135,11 @@ class Controller {
         $this->showCatalogPage();
     }
     
-    private function deleteBook() {
+    private function removeBook() {
         $book_id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_STRING);
-        $this->library_db->deleteBook($book_id);
+        
+        $this->library_db->removeBook($book_id);
+        
         $this->showCatalogPage();
     }
     
@@ -135,12 +162,12 @@ class Controller {
         $date = filter_input(INPUT_POST, 'date', FILTER_SANITIZE_STRING);
         $library_id = filter_input(INPUT_POST, 'library', FILTER_SANITIZE_STRING);
         $comments = filter_input(INPUT_POST, 'comments', FILTER_SANITIZE_STRING);
-        
         $this->view->assign('name', $name);
         $this->view->assign('email', $email);
         $this->view->assign('phone', $phone);
         $this->view->assign('date', $date);
-        $this->view->assign('library', $library_id);
+        $library = $this->library_db->getLibrary($library_id);
+        $this->view->assign('library', $library);
         $this->view->assign('comments', $comments);
         $this->view->display('confirmcontact.tpl');
     }
