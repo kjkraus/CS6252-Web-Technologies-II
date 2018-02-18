@@ -197,5 +197,37 @@ class LibraryDB {
 	    }
 	    return $categories;
 	}
-}
+	
+	/**
+	 * save the Contact message
+	 *
+	 * @param $library_id
+	 * @param $name
+	 * @param $email
+	 * @param $phone
+	 * @param $date
+	 * @param $pages
+	 * @param $comments
+	 * @return boolean True if the update operation was successful, False otherwise
+	 */
+	public function saveMessage($library_id, $name, $email, $phone, $date, $comments) {
+	    $query = "INSERT INTO messages (libraryID, name, email, phone, messageDate, comments)
+                    VALUES (:library_id, :name, :email, :phone, :messageDate, :comments)";
+	    $statement = $this->db->prepare($query);
+	    $statement->bindValue(':library_id', $library_id);
+	    $statement->bindValue(':name', $name);
+	    $statement->bindValue(':email', $email);
+	    $statement->bindValue(':phone', $phone);
+	    $statement->bindValue(':messageDate', $date);
+	    $statement->bindValue(':comments', $comments);
+	    $statement->execute();
+	    $row_count = $statement->rowCount();
+	    $statement->closeCursor();
+	    if ($row_count == 0) {
+	        var_dump("false");
+	        return False;
+	    }
+	    return True;
+	}
+}	    
 ?>

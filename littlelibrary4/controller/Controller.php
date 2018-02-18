@@ -170,6 +170,8 @@ class Controller {
         $this->view->assign('library', $library);
         $this->view->assign('comments', $comments);
         $this->view->display('confirmcontact.tpl');
+        
+        $this->library_db->saveMessage($library_id, $name, $email, $phone, $date, $comments);
     }
     
     /*--------------------------------------------------------------
