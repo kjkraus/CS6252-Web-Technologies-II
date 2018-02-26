@@ -24,20 +24,26 @@
         </div>
       </div>
         <form action="index.php" class="message" method="post">
-          <input type="hidden" name="action" value="update_message">
-          <input type="hidden" id="idID" name="id" value="{$message->getID()}">
-          <input class="btn btn-default" type="submit" value="Update" id="idSubmitUpdate">
+          <div class='col-sm-3 form-group'>
+            <input type="hidden" name="action" value="update_message">
+            <input type="hidden" id="idID" name="id" value="{$message->getID()}">
+            <input class="btn btn-default" type="submit" value="Update" id="idSubmitUpdate">
+          </div>
         </form>
         <form action="index.php" class="message" method="post">
-          <input type="hidden" name="action" value="remove_message">
-          <input type="hidden" id="idID" name="id" value="{$message->getID()}">
-          <input class="btn btn-danger" type="submit" value="Delete" id="idSubmitDelete">
+          <div class='col-sm-3 form-group'>
+            <input type="hidden" name="action" value="remove_message">
+            <input type="hidden" id="idID" name="id" value="{$message->getID()}">
+            <input class="btn btn-danger" type="submit" value="Delete" id="idSubmitDelete">
+          </div>
         </form>        
         <form action="index.php" class="wmessage" method="post">
-	      <input type="hidden" name="action" value="review_message">
-          <input type="hidden" id="idID" name="id" value="{$message->getID()}">
-          <input class="btn btn-link" type="submit" value="View / Add Review" id="idSubmitReview">
-        </form>   
+          <div class='col-sm-3 form-group'>
+	        <input type="hidden" name="action" value="review_message">
+            <input type="hidden" id="idID" name="id" value="{$message->getID()}">
+            <input class="btn btn-link" type="submit" value="View / Add Review" id="idSubmitReview">
+          </div>
+        </form>     
      </div>
 </div><br><br>
 {/foreach}
