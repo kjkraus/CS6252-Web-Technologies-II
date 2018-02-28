@@ -4,10 +4,10 @@
 
 <main>
 <div class="container">  
-<h2>TLC Messages > +Add</h2>
+<h2>TLC Messages > Update</h2>
+
 <br><br>
   <form>
-  <div class="col-sm-4">
   <div class="form-group">
     <label for="exampleSelect1">Category</label>
     <select class="form-control" id="exampleSelect1">
@@ -30,8 +30,7 @@
   </div>
   
   <button type="submit" class="btn btn-primary">Submit</button>
-</form>  
-</div>        
+</form>          
 </main>
 
 {include file='shared/footer.tpl'}

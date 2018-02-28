@@ -61,6 +61,9 @@ class Controller {
             case 'show_addnew_page':
                 $this->view->display('addnew.tpl');
                 break;
+            case 'update_message':
+                $this->updateMessage();
+                break;
             case 'remove_message':
                 $this->removeMessage();
                 break;
@@ -134,7 +137,18 @@ class Controller {
         $this->view->display('reviews.tpl');
     }
     
-
+    private function updateMessage() {
+        $message_id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_STRING);
+        $this->message_db->removeMessage($message_id);
+        $this->showUpdatePage();
+    }
+    
+    private function showUpdatePage() {
+        $message_id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_STRING);
+        $message_catalog = $this->message_db->getUpdateMessageCatalog($message_id);
+        $this->view->assign('message_catalog', $message_catalog);
+        $this->view->display('update.tpl');
+    }
     
     private function removeMessage() {
         $message_id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_STRING);        

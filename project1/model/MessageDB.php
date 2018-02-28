@@ -201,5 +201,23 @@ class MessageDB {
         }
         return $message_catalog;
     }
+    
+    public function getUpdateMessageCatalog($message_id) {
+        // create the query
+        $query = 'SELECT * FROM messages WHERE id = :message_id';
+        $statement = $this->db->prepare($query);
+        $statement->bindValue(':message_id', $message_id);
+        $statement->execute();
+        $messages = $statement->fetchAll();
+        $statement->closeCursor();
+        
+        // set the image to the default image if it
+        // doesn't exists or is not specified
+        $message_catalog = array();
+        foreach ($messages as $message) {
+            $message_catalog[] = new Message($message);
+        }
+        return $message_catalog;
+    }
 }
 ?>

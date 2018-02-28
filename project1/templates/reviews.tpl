@@ -23,27 +23,12 @@
 		  </div>		    
         </div>
       </div>
-        <form action="index.php" class="message" method="post">
-          <div class='col-sm-3 form-group'>
-            <input type="hidden" name="action" value="update_message">
-            <input type="hidden" id="idID" name="id" value="{$message->getID()}">
-            <input class="btn btn-default" type="submit" value="Update" id="idSubmitUpdate">
-          </div>
-        </form>
-        <form action="index.php" class="message" method="post">
-          <div class='col-sm-3 form-group'>
-            <input type="hidden" name="action" value="remove_message">
-            <input type="hidden" id="idID" name="id" value="{$message->getID()}">
-            <input class="btn btn-danger" type="submit" value="Delete" id="idSubmitDelete">
-          </div>
-        </form>        
-        <form action="index.php" class="wmessage" method="post">
-          <div class='col-sm-3 form-group'>
-	        <input type="hidden" name="action" value="review_message">
-            <input type="hidden" id="idID" name="id" value="{$message->getID()}">
-            <input class="btn btn-link" type="submit" value="View / Add Review" id="idSubmitReview">
-          </div>
-        </form>    
+    <div class="form-group">
+      <label for="exampleTextarea">Add Your Review</label>
+      <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+      <small id="messageHelp" class="form-text text-muted">Maximum 3000 characters.</small>
+    </div>
+      <button type="submit" class="btn btn-primary">Submit</button>    
     </div>
 </div><br><br>
 {/foreach}

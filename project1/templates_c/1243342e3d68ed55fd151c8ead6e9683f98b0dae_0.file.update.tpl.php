@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2018-02-28 04:01:26
-  from "C:\xampp\htdocs\project1\templates\addnew.tpl" */
+/* Smarty version 3.1.30, created on 2018-02-28 03:42:28
+  from "C:\xampp\htdocs\project1\templates\update.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5a961b86053234_97155713',
+  'unifunc' => 'content_5a961714c50580_03498364',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '67905452ccd80e554c8e883993386a52d185a81a' => 
+    '1243342e3d68ed55fd151c8ead6e9683f98b0dae' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\project1\\templates\\addnew.tpl',
-      1 => 1519786884,
+      0 => 'C:\\xampp\\htdocs\\project1\\templates\\update.tpl',
+      1 => 1519785743,
       2 => 'file',
     ),
   ),
@@ -24,7 +24,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:shared/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5a961b86053234_97155713 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a961714c50580_03498364 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:shared/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -37,10 +37,10 @@ $_smarty_tpl->_subTemplateRender("file:shared/head.tpl", $_smarty_tpl->cache_id,
 
 <main>
 <div class="container">  
-<h2>TLC Messages > +Add</h2>
+<h2>TLC Messages > Update</h2>
+
 <br><br>
   <form>
-  <div class="col-sm-4">
   <div class="form-group">
     <label for="exampleSelect1">Category</label>
     <select class="form-control" id="exampleSelect1">
@@ -63,8 +63,7 @@ $_smarty_tpl->_subTemplateRender("file:shared/head.tpl", $_smarty_tpl->cache_id,
   </div>
   
   <button type="submit" class="btn btn-primary">Submit</button>
-</form>  
-</div>        
+</form>          
 </main>
 
 <?php $_smarty_tpl->_subTemplateRender("file:shared/footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
