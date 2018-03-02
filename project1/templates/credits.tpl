@@ -11,7 +11,6 @@
   <p>Hosted at <a href="https://www.000webhost.com/">https://www.000webhost.com/</a>
   <p>Bootstrap <a href="https://getbootstrap.com/">https://getbootstrap.com/</a>
   <p>Text Message pictures created with <a href="http://www.ios7text.com/">http://www.ios7text.com/</a>
-  <p>Copy to clipboard functionality from <a href="https://clipboardjs.com/">https://clipboardjs.com/</a>
 </div>
 </main>
 

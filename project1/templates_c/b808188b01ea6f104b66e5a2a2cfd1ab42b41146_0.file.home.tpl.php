@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2018-02-26 03:47:58
+/* Smarty version 3.1.30, created on 2018-03-02 03:27:52
   from "C:\xampp\htdocs\project1\templates\home.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5a93755e94cf03_48111887',
+  'unifunc' => 'content_5a98b6a8e78f41_99832222',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b808188b01ea6f104b66e5a2a2cfd1ab42b41146' => 
     array (
       0 => 'C:\\xampp\\htdocs\\project1\\templates\\home.tpl',
-      1 => 1519613247,
+      1 => 1519957363,
       2 => 'file',
     ),
   ),
@@ -24,7 +24,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:shared/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5a93755e94cf03_48111887 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a98b6a8e78f41_99832222 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:shared/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -51,114 +51,14 @@ foreach ($_from as $_smarty_tpl->tpl_vars['message']->value) {
           <div class="panel-title pull-right">Author: <?php echo $_smarty_tpl->tpl_vars['message']->value->getAuthor();?>
 </div>
         </div>
-        <div class="panel-body"><img src="<?php echo $_smarty_tpl->tpl_vars['message']->value->getImage();?>
-" class="img-responsive" style="width:100%" alt="Image"></div>
-          <div class="panel-footer">
-		    <button class="btn btn-default" data-clipboard-text="Just because you can doesn't mean you should — clipboard.js">
-    	 	  Copy to clipboard
-		    </button>
-		    <div class="pull-right">
-    		  3 Reviews
-		    </button>
-		  </div>
-        </div>
-      </div>
-    </div>
-    <!-- <div class="col-sm-4">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          HUMOR<div class="panel-title pull-right">Author: BEV</div>
-        </div>
-        <div class="panel-body"><img src="model/images/dropped.jpg" class="img-responsive" style="width:100%" alt="Image"></div>
-          <div class="panel-footer">
-		    <button class="btn btn-default" data-clipboard-text="Just because you can doesn't mean you should — clipboard.js">
-    	 	  Copy to clipboard
-		    </button>
-		    <div class="pull-right">
-		    <button class="btn btn-link" >
-    		  3 Reviews
-		    </button>
-		  </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          HUMOR<div class="panel-title pull-right">Author: BEV</div>
-        </div>
-        <div class="panel-body"><img src="model/images/dropped.jpg" class="img-responsive" style="width:100%" alt="Image"></div>
-          <div class="panel-footer">
-		    <button class="btn btn-default" data-clipboard-text="Just because you can doesn't mean you should — clipboard.js">
-    	 	  Copy to clipboard
-		    </button>
-		    <div class="pull-right">
-		    <button class="btn btn-link" >
-    		  3 Reviews
-		    </button>
-		  </div>
-        </div>
-      </div>
-    </div>
-</div><br>
+        <div class="panel-body">
+          <img src="<?php echo $_smarty_tpl->tpl_vars['message']->value->getImage();?>
+" class="img-responsive" style="width:100%" alt="Image">
+          <?php echo $_smarty_tpl->tpl_vars['message']->value->getMessage();?>
 
-<div class="container">    
-  <div class="row">
-    <div class="col-sm-4">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          HUMOR<div class="panel-title pull-right">Author: BEV</div>
-        </div>
-        <div class="panel-body"><img src="model/images/dropped.jpg" class="img-responsive" style="width:100%" alt="Image"></div>
-          <div class="panel-footer">
-		    <button class="btn btn-default" data-clipboard-text="Just because you can doesn't mean you should — clipboard.js">
-    	 	  Copy to clipboard
-		    </button>
-		    <div class="pull-right">
-		    <button class="btn btn-link" >
-    		  3 Reviews
-		    </button>
-		  </div>
         </div>
       </div>
     </div>
-    <div class="col-sm-4">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          HUMOR<div class="panel-title pull-right">Author: BEV</div>
-        </div>
-        <div class="panel-body"><img src="model/images/dropped.jpg" class="img-responsive" style="width:100%" alt="Image"></div>
-          <div class="panel-footer">
-		    <button class="btn btn-default" data-clipboard-text="Just because you can doesn't mean you should — clipboard.js">
-    	 	  Copy to clipboard
-		    </button>
-		    <div class="pull-right">
-		    <button class="btn btn-link" >
-    		  3 Reviews
-		    </button>
-		  </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          HUMOR<div class="panel-title pull-right">Author: BEV</div>
-        </div>
-        <div class="panel-body"><img src="model/images/dropped.jpg" class="img-responsive" style="width:100%" alt="Image"></div>
-          <div class="panel-footer">
-		    <button class="btn btn-default" data-clipboard-text="Just because you can doesn't mean you should — clipboard.js">
-    	 	  Copy to clipboard
-		    </button>
-		    <div class="pull-right">
-		    <button class="btn btn-link" >
-    		  3 Reviews
-		    </button>
-		  </div>
-        </div>
-      </div>
-    </div> -->
- 
     <?php
 }
 }

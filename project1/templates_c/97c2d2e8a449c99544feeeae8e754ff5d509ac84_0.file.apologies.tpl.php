@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2018-02-26 23:48:35
+/* Smarty version 3.1.30, created on 2018-03-02 03:34:36
   from "C:\xampp\htdocs\project1\templates\apologies.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5a948ec3bf7304_19073420',
+  'unifunc' => 'content_5a98b83c3088c8_50111090',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '97c2d2e8a449c99544feeeae8e754ff5d509ac84' => 
     array (
       0 => 'C:\\xampp\\htdocs\\project1\\templates\\apologies.tpl',
-      1 => 1519685233,
+      1 => 1519958073,
       2 => 'file',
     ),
   ),
@@ -24,7 +24,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:shared/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5a948ec3bf7304_19073420 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a98b83c3088c8_50111090 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:shared/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -51,16 +51,11 @@ foreach ($_from as $_smarty_tpl->tpl_vars['message']->value) {
           <div class="panel-title pull-right">Author: <?php echo $_smarty_tpl->tpl_vars['message']->value->getAuthor();?>
 </div>
         </div>
-        <div class="panel-body"><img src="<?php echo $_smarty_tpl->tpl_vars['message']->value->getImage();?>
-" class="img-responsive" style="width:100%" alt="Image"></div>
-          <div class="panel-footer">
-		    <button class="btn btn-default" data-clipboard-text="Just because you can doesn't mean you should — clipboard.js">
-    	 	  Copy to clipboard
-		    </button>
-		    <div class="pull-right">
-    		  3 Reviews
-		    </button>
-		  </div>		    
+        <div class="panel-body">
+          <img src="<?php echo $_smarty_tpl->tpl_vars['message']->value->getImage();?>
+" class="img-responsive" style="width:100%" alt="Image">
+          <?php echo $_smarty_tpl->tpl_vars['message']->value->getMessage();?>
+
         </div>
       </div>
         <form action="index.php" class="message" method="post">
@@ -68,7 +63,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['message']->value) {
             <input type="hidden" name="action" value="update_message">
             <input type="hidden" id="idID" name="id" value="<?php echo $_smarty_tpl->tpl_vars['message']->value->getID();?>
 ">
-            <input class="btn btn-default" type="submit" value="Update" id="idSubmitUpdate">
+            <input class="btn btn-primary" type="submit" value="Update" id="idSubmitUpdate">
           </div>
         </form>
         <form action="index.php" class="message" method="post">

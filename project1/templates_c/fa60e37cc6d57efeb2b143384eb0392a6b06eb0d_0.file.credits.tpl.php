@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2018-02-26 23:35:45
+/* Smarty version 3.1.30, created on 2018-03-02 03:36:02
   from "C:\xampp\htdocs\project1\templates\credits.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5a948bc1304cb2_53439829',
+  'unifunc' => 'content_5a98b89215e334_18434272',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fa60e37cc6d57efeb2b143384eb0392a6b06eb0d' => 
     array (
       0 => 'C:\\xampp\\htdocs\\project1\\templates\\credits.tpl',
-      1 => 1519684542,
+      1 => 1519958159,
       2 => 'file',
     ),
   ),
@@ -24,7 +24,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:shared/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5a948bc1304cb2_53439829 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a98b89215e334_18434272 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:shared/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -44,7 +44,6 @@ $_smarty_tpl->_subTemplateRender("file:shared/head.tpl", $_smarty_tpl->cache_id,
   <p>Hosted at <a href="https://www.000webhost.com/">https://www.000webhost.com/</a>
   <p>Bootstrap <a href="https://getbootstrap.com/">https://getbootstrap.com/</a>
   <p>Text Message pictures created with <a href="http://www.ios7text.com/">http://www.ios7text.com/</a>
-  <p>Copy to clipboard functionality from <a href="https://clipboardjs.com/">https://clipboardjs.com/</a>
 </div>
 </main>
 

@@ -12,15 +12,9 @@
         <div class="panel-heading">{$message->getCategory()}
           <div class="panel-title pull-right">Author: {$message->getAuthor()}</div>
         </div>
-        <div class="panel-body"><img src="{$message->getImage()}" class="img-responsive" style="width:100%" alt="Image"></div>
-          <div class="panel-footer">
-		    <button class="btn btn-default" data-clipboard-text="placeholder">
-    	 	  Copy to clipboard
-		    </button>
-		    <div class="pull-right">		    
-    		  3 Reviews
-		    </button>
-		  </div>  		    
+        <div class="panel-body">
+          <img src="{$message->getImage()}" class="img-responsive" style="width:100%" alt="Image">
+          {$message->getMessage()}
         </div>
       </div>
       <div>
@@ -28,7 +22,7 @@
           <div class='col-sm-3 form-group'>
             <input type="hidden" name="action" value="update_message">
             <input type="hidden" id="idID" name="id" value="{$message->getID()}">
-            <input class="btn btn-default" type="submit" value="Update" id="idSubmitUpdate">
+            <input class="btn btn-primary" type="submit" value="Update" id="idSubmitUpdate">
           </div>
         </form>
         <form action="index.php" class="message" method="post">

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2018-03-02 03:34:16
-  from "C:\xampp\htdocs\project1\templates\congratulations.tpl" */
+/* Smarty version 3.1.30, created on 2018-03-02 03:52:33
+  from "C:\xampp\htdocs\project1\templates\recent.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5a98b8287e0959_89684042',
+  'unifunc' => 'content_5a98bc7194ca14_50886145',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '280b84549e9f5607c17897505bcfc356e8d9e31e' => 
+    '12e3bc6695fcc88d0315e8207ffb76a9657d8188' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\project1\\templates\\congratulations.tpl',
-      1 => 1519958053,
+      0 => 'C:\\xampp\\htdocs\\project1\\templates\\recent.tpl',
+      1 => 1519957363,
       2 => 'file',
     ),
   ),
@@ -24,7 +24,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:shared/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5a98b8287e0959_89684042 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a98bc7194ca14_50886145 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:shared/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -36,8 +36,8 @@ $_smarty_tpl->_subTemplateRender("file:shared/head.tpl", $_smarty_tpl->cache_id,
 
 
 <main>
-<div class="container">  
-<h2>TLC Messages > Congratulations</h2>
+<div class="container">   
+<h2>Recently Added</h2> 
   <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['message_catalog']->value, 'message');
 if ($_from !== null) {
@@ -58,38 +58,14 @@ foreach ($_from as $_smarty_tpl->tpl_vars['message']->value) {
 
         </div>
       </div>
-        <form action="index.php" class="message" method="post">
-          <div class='col-sm-3 form-group'>
-            <input type="hidden" name="action" value="update_message">
-            <input type="hidden" id="idID" name="id" value="<?php echo $_smarty_tpl->tpl_vars['message']->value->getID();?>
-">
-            <input class="btn btn-primary" type="submit" value="Update" id="idSubmitUpdate">
-          </div>
-        </form>
-        <form action="index.php" class="message" method="post">
-          <div class='col-sm-3 form-group'>
-            <input type="hidden" name="action" value="remove_message">
-            <input type="hidden" id="idID" name="id" value="<?php echo $_smarty_tpl->tpl_vars['message']->value->getID();?>
-">
-            <input class="btn btn-danger" type="submit" value="Delete" id="idSubmitDelete">
-          </div>
-        </form>        
-        <form action="index.php" class="wmessage" method="post">
-          <div class='col-sm-3 form-group'>
-	        <input type="hidden" name="action" value="review_message">
-            <input type="hidden" id="idID" name="id" value="<?php echo $_smarty_tpl->tpl_vars['message']->value->getID();?>
-">
-            <input class="btn btn-link" type="submit" value="View / Add Review" id="idSubmitReview">
-          </div>
-        </form>   
-     </div>
-</div><br><br>
-<?php
+    </div>
+    <?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 ?>
 
+</div> <br>  
 </main>
 
 <?php $_smarty_tpl->_subTemplateRender("file:shared/footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);

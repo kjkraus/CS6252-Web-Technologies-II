@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2018-02-25 14:18:12
+/* Smarty version 3.1.30, created on 2018-03-01 00:06:33
   from "C:\xampp\htdocs\project1\templates\shared\head.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5a92b79406a6a4_68917667',
+  'unifunc' => 'content_5a9735f9148d70_33028835',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '87604235b0c16abbbcfab6003a8676e62fe44902' => 
     array (
       0 => 'C:\\xampp\\htdocs\\project1\\templates\\shared\\head.tpl',
-      1 => 1519564688,
+      1 => 1519859190,
       2 => 'file',
     ),
   ),
@@ -20,12 +20,12 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a92b79406a6a4_68917667 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a9735f9148d70_33028835 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Top Liked Communications</title>
+  <title>Top Line Communications</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">

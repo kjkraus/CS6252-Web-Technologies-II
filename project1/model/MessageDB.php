@@ -71,6 +71,70 @@ class MessageDB {
     }
     
     /**
+     * removes all reviews for the specified message record
+     *
+     * @param $message_id
+     * @return boolean True if the update operation was successful, False otherwise
+     */
+    public function removeReviews($message_id) {
+        $query = "DELETE FROM reviews
+				  WHERE messageId = :message_id";
+        $statement = $this->db->prepare($query);
+        $statement->bindValue(':message_id', $message_id);
+        $statement->execute();
+        $row_count = $statement->rowCount();
+        $statement->closeCursor();
+        if ($row_count == 0) {
+            var_dump("false");
+            return False;
+        }
+        return True;
+    }
+    
+    /**
+     * adds the review and date to the reviews table
+     *
+     * @param $review, $message_id
+     * @return boolean True if the update operation was successful, False otherwise
+     */
+    public function addReview($message_id, $review) {
+        $query = "INSERT INTO reviews (messageId, date, review)
+				 VALUES (:message_id,  NOW(), :review)";
+        $statement = $this->db->prepare($query);
+        $statement->bindValue(':message_id', $message_id);
+        $statement->bindValue(':review', $review);
+        $statement->execute();
+        $row_count = $statement->rowCount();
+        $statement->closeCursor();
+        if ($row_count == 0) {
+            var_dump("false");
+            return False;
+        }
+        return True;
+    }
+    
+    /**
+     * adds the signature and date to the visitors table
+     *
+     * @param $signature
+     * @return boolean True if the update operation was successful, False otherwise
+     */
+    public function signGuestBook($signature) {
+        $query = "INSERT INTO visitors (signature, date)
+				 VALUES (:signature, NOW())";
+        $statement = $this->db->prepare($query);
+        $statement->bindValue(':signature', $signature);
+        $statement->execute();
+        $row_count = $statement->rowCount();
+        $statement->closeCursor();
+        if ($row_count == 0) {
+            var_dump("false");
+            return False;
+        }
+        return True;
+    }
+    
+    /**
      * retrieve the most recent 3 messages from the database and return
      * an array of the messages as objects of class Message
      *
@@ -202,6 +266,24 @@ class MessageDB {
         return $message_catalog;
     }
     
+    public function getReviewCatalog($message_id) {
+        // create the query
+        $query = 'SELECT * FROM reviews WHERE messageId = :message_id';
+        $statement = $this->db->prepare($query);
+        $statement->bindValue(':message_id', $message_id);
+        $statement->execute();
+        $reviews = $statement->fetchAll();
+        $statement->closeCursor();
+        
+        // set the image to the default image if it
+        // doesn't exists or is not specified
+        $review_catalog = array();
+        foreach ($reviews as $review) {
+            $review_catalog[] = new Review($review);
+        }
+        return $review_catalog;
+    }
+    
     public function getUpdateMessageCatalog($message_id) {
         // create the query
         $query = 'SELECT * FROM messages WHERE id = :message_id';
@@ -218,6 +300,74 @@ class MessageDB {
             $message_catalog[] = new Message($message);
         }
         return $message_catalog;
+    }
+    
+    /**
+     * retrieve the message with the specified id
+     *
+     * @param $message_id of book to be retrieved
+     * @return NULL|Message return Null upon failure, return the message object otherwise
+     */
+    public function getMessage($message_id) {
+        // create the query
+        $query = "SELECT * FROM messages
+				  WHERE messageId = :message_id";
+        $statement = $this->db->prepare($query);
+        $statement->bindValue(':message_id', $message_id);
+        $statement->execute();
+        $message_record = $statement->fetch();
+        $statement->closeCursor();
+        // check if query was successfule
+        if ($message_record == False) {
+            return Null;
+        }
+        $message = new Message($book_record);
+        return $message;
+    }
+    
+    /**
+     * update the specified message record
+     *
+     * @param $message_id
+     * @param $author
+     * @param $category
+     * @param $messages
+     * @return boolean True if the update operation was successful, False otherwise
+     */
+    public function submitUpdateMessage($message_id, $category, $author, $message) {
+        $query = "UPDATE messages
+				  SET category = :category,
+                    message = :message,
+                    author = :author
+				  WHERE id = :message_id";
+        $statement = $this->db->prepare($query);
+        $statement->bindValue(':category', $category);
+        $statement->bindValue(':message_id', $message_id);
+        $statement->bindValue(':message', $message);
+        $statement->bindValue(':author', $author);
+        $statement->execute();
+        $row_count = $statement->rowCount();
+        $statement->closeCursor();
+        if ($row_count == 0) {
+            var_dump("false");
+            return False;
+        }
+        return True;
+    }
+    
+    public function getVisitorsCatalog() {
+        // create the query
+        $query = 'SELECT * FROM visitors';
+        $statement = $this->db->prepare($query);
+        $statement->execute();
+        $visitors = $statement->fetchAll();
+        $statement->closeCursor();
+        
+        $visitor_catalog = array();
+        foreach ($visitors as $visitor) {
+            $visitor_catalog[] = new Visitor($visitor);
+        }
+        return $visitor_catalog;
     }
 }
 ?>

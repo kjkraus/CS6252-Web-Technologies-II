@@ -1,6 +1,8 @@
 <?php
 include_once 'model/MessageDB.php';
 include_once 'model/Message.php';
+include_once 'model/Visitor.php';
+include_once 'model/Review.php';
 include_once 'Smarty.class.php';
 
 class Controller {
@@ -34,7 +36,7 @@ class Controller {
         $this->getAction();
         
         switch ($this->action) {
-            case 'show_home_page':
+            case 'show_recent_page':
                 $this->showRecentCatalogPage();
                 break;
             case 'show_catalog_page':
@@ -64,14 +66,23 @@ class Controller {
             case 'update_message':
                 $this->updateMessage();
                 break;
+            case 'submit_update_message':
+                $this->submitUpdateMessage();
+                break;
             case 'remove_message':
                 $this->removeMessage();
                 break;
             case 'review_message':
                 $this->reviewMessage();
                 break;
+            case 'sign_guest_book':
+                $this->signGuestBook();
+                break;
+            case 'submit_review':
+                $this->submitReview();
+                break;
             case 'show_visitors_page':
-                $this->view->display('visitors.tpl');
+                $this->showVisitorsPage();
                 break;
             case 'show_credits_page':
                 $this->view->display('credits.tpl');
@@ -97,7 +108,7 @@ class Controller {
     private function showRecentCatalogPage() {
         $message_catalog = $this->message_db->getRecentMessageCatalog();
         $this->view->assign('message_catalog', $message_catalog);
-        $this->view->display('home.tpl');
+        $this->view->display('recent.tpl');
     }
     
     private function showHumorCatalogPage() {
@@ -133,14 +144,32 @@ class Controller {
     private function showReviewsPage() {
         $message_id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_STRING);
         $message_catalog = $this->message_db->getReviewsMessageCatalog($message_id);
+        $review_catalog = $this->message_db->getReviewCatalog($message_id);
         $this->view->assign('message_catalog', $message_catalog);
+        $this->view->assign('review_catalog', $review_catalog);
         $this->view->display('reviews.tpl');
+    }
+    
+    private function showVisitorsPage() {
+        $visitor_catalog = $this->message_db->getVisitorsCatalog();
+        $this->view->assign('visitor_catalog', $visitor_catalog);
+        $this->view->display('visitors.tpl');
     }
     
     private function updateMessage() {
         $message_id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_STRING);
-        $this->message_db->removeMessage($message_id);
+        $message = $this->message_db->getMessage($message_id);
+        $this->message_db->getUpdateMessageCatalog($message_id);
         $this->showUpdatePage();
+    }
+    
+    private function submitUpdateMessage() {
+        $message_id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_STRING);
+        $message = trim(filter_input(INPUT_POST, 'message', FILTER_SANITIZE_STRING));
+        $author = trim(filter_input(INPUT_POST, 'author', FILTER_SANITIZE_STRING));
+        $category = trim(filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING));
+        $this->message_db->submitUpdateMessage($message_id, $message, $category, $author);
+        $this->showCatalogPage();
     }
     
     private function showUpdatePage() {
@@ -152,14 +181,30 @@ class Controller {
     
     private function removeMessage() {
         $message_id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_STRING);        
-        $this->message_db->removeMessage($message_id);        
+        $this->message_db->removeMessage($message_id);
+        $this->message_db->removeReviews($message_id);
         $this->showCatalogPage();
     }
     
     private function reviewMessage() {
         $message_id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_STRING);        
         $this->message_db->getReviewsMessageCatalog($message_id);
+        $this->message_db->getReviewCatalog($message_id);
         $this->showReviewsPage();
+    }
+    
+    private function submitReview() {
+        $review = filter_input(INPUT_POST, 'review', FILTER_SANITIZE_STRING);
+        $message_id = filter_input(INPUT_POST, 'message_id', FILTER_SANITIZE_STRING);
+        $this->message_db->addReview($message_id, $review);
+        $this->showReviewsPage();
+    }
+    
+    private function signGuestBook() {
+        $signature = filter_input(INPUT_POST, 'signature', FILTER_SANITIZE_STRING);
+        $this->view->assign('signature', $signature);
+        $this->message_db->signGuestBook($signature);
+        $this->showVisitorsPage();
     }
     
     
@@ -172,7 +217,7 @@ class Controller {
             if ($this->action === NULL) {
                 $this->action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 if ($this->action === NULL) {
-                    $this->action = 'show_home_page';
+                    $this->action = 'show_catalog_page';
                 }
             }
         }

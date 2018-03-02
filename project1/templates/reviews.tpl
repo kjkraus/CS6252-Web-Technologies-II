@@ -12,7 +12,10 @@
         <div class="panel-heading">{$message->getCategory()}
           <div class="panel-title pull-right">Author: {$message->getAuthor()}</div>
         </div>
-        <div class="panel-body"><img src="{$message->getImage()}" class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-body">
+          <img src="{$message->getImage()}" class="img-responsive" style="width:100%" alt="Image">
+          {$message->getMessage()}
+        </div>
           <div class="panel-footer">
 		    <button class="btn btn-default" data-clipboard-text="Just because you can doesn't mean you should — clipboard.js">
     	 	  Copy to clipboard
@@ -24,14 +27,28 @@
         </div>
       </div>
     <div class="form-group">
-      <label for="exampleTextarea">Add Your Review</label>
-      <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-      <small id="messageHelp" class="form-text text-muted">Maximum 3000 characters.</small>
+     <form method="post" id="reviewform" action="index.php">
+		<input type="hidden" id="idHidden" name="action" value="submit_review" >
+		<input type="hidden" id="idID" name="message_id" value="{$message->getID()}">
+		<label for="idReview">Add your review </label>
+		<textarea class="form-control" id="iddReview" name="review" rows="2" cols="20" required="required"></textarea>
+		<button type="submit" class="btn btn-primary" value="Submit" id="idSubmit">Submit</button>
+	 </form>  
+	 {/foreach} 
+	 {foreach item=review from=$review_catalog}
+	 <br>
+        <div class="alert alert-info" role="alert">
+           Reviewed on {$review->getDate()}.
+           <p>"<strong>{$review->getReview()}</strong>"</p>
+	    </div>
+	 {/foreach}		    
+      </div>
     </div>
-      <button type="submit" class="btn btn-primary">Submit</button>    
-    </div>
+  <div>
+</div>
+</div>
 </div><br><br>
-{/foreach}
+
 </main>
 
 {include file='shared/footer.tpl'}
