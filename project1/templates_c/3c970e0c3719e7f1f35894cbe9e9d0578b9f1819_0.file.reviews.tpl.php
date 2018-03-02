@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2018-03-02 03:12:23
+/* Smarty version 3.1.30, created on 2018-03-02 11:01:26
   from "C:\xampp\htdocs\project1\templates\reviews.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5a98b307d6fd72_91601302',
+  'unifunc' => 'content_5a9920f64922c0_78535625',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3c970e0c3719e7f1f35894cbe9e9d0578b9f1819' => 
     array (
       0 => 'C:\\xampp\\htdocs\\project1\\templates\\reviews.tpl',
-      1 => 1519956739,
+      1 => 1519984882,
       2 => 'file',
     ),
   ),
@@ -24,7 +24,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:shared/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5a98b307d6fd72_91601302 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a9920f64922c0_78535625 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:shared/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -73,7 +73,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['message']->value) {
 		<input type="hidden" id="idID" name="message_id" value="<?php echo $_smarty_tpl->tpl_vars['message']->value->getID();?>
 ">
 		<label for="idReview">Add your review </label>
-		<textarea class="form-control" id="iddReview" name="review" rows="2" cols="20" required="required"></textarea>
+		<textarea class="form-control" id="iddReview" name="review" rows="2" cols="20" required="required"></textarea><br>
 		<button type="submit" class="btn btn-primary" value="Submit" id="idSubmit">Submit</button>
 	 </form>  
 	 <?php

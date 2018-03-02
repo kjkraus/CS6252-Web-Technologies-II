@@ -31,7 +31,7 @@
 		<input type="hidden" id="idHidden" name="action" value="submit_review" >
 		<input type="hidden" id="idID" name="message_id" value="{$message->getID()}">
 		<label for="idReview">Add your review </label>
-		<textarea class="form-control" id="iddReview" name="review" rows="2" cols="20" required="required"></textarea>
+		<textarea class="form-control" id="iddReview" name="review" rows="2" cols="20" required="required"></textarea><br>
 		<button type="submit" class="btn btn-primary" value="Submit" id="idSubmit">Submit</button>
 	 </form>  
 	 {/foreach} 

@@ -92,6 +92,29 @@ class MessageDB {
     }
     
     /**
+     * adds the message, category, and author to the messages table
+     *
+     * @param $message, $category, $author
+     * @return boolean True if the update operation was successful, False otherwise
+     */
+    public function addMessage($category, $author, $message) {
+        $query = "INSERT INTO messages (category, message, author)
+				 VALUES (:category,  :message, :author)";
+        $statement = $this->db->prepare($query);
+        $statement->bindValue(':category', $category);
+        $statement->bindValue(':message', $message);
+        $statement->bindValue(':author', $author);
+        $statement->execute();
+        $row_count = $statement->rowCount();
+        $statement->closeCursor();
+        if ($row_count == 0) {
+            var_dump("false");
+            return False;
+        }
+        return True;
+    }
+    
+    /**
      * adds the review and date to the reviews table
      *
      * @param $review, $message_id
@@ -326,12 +349,12 @@ class MessageDB {
     }
     
     /**
-     * update the specified message record
+     * updates the specified message record
      *
      * @param $message_id
      * @param $author
      * @param $category
-     * @param $messages
+     * @param $message
      * @return boolean True if the update operation was successful, False otherwise
      */
     public function submitUpdateMessage($message_id, $category, $author, $message) {

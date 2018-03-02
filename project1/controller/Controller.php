@@ -66,6 +66,9 @@ class Controller {
             case 'update_message':
                 $this->updateMessage();
                 break;
+            case 'submit_new_message':
+                $this->submitNewMessage();
+                break;
             case 'submit_update_message':
                 $this->submitUpdateMessage();
                 break;
@@ -165,9 +168,9 @@ class Controller {
     
     private function submitUpdateMessage() {
         $message_id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_STRING);
-        $message = trim(filter_input(INPUT_POST, 'message', FILTER_SANITIZE_STRING));
-        $author = trim(filter_input(INPUT_POST, 'author', FILTER_SANITIZE_STRING));
-        $category = trim(filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING));
+        $message = (filter_input(INPUT_POST, 'message', FILTER_SANITIZE_STRING));
+        $author = (filter_input(INPUT_POST, 'author', FILTER_SANITIZE_STRING));
+        $category = (filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING));
         $this->message_db->submitUpdateMessage($message_id, $message, $category, $author);
         $this->showCatalogPage();
     }
@@ -176,6 +179,10 @@ class Controller {
         $message_id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_STRING);
         $message_catalog = $this->message_db->getUpdateMessageCatalog($message_id);
         $this->view->assign('message_catalog', $message_catalog);
+        //these assignments are breaking
+        //$this->view->assign('category', $category);
+        //$this->view->assign('message', $message);
+        //$this->view->assign('author', $author);
         $this->view->display('update.tpl');
     }
     
@@ -193,11 +200,19 @@ class Controller {
         $this->showReviewsPage();
     }
     
+    private function submitNewMessage() {
+        $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
+        $author = filter_input(INPUT_POST, 'author', FILTER_SANITIZE_STRING);
+        $message = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_STRING);
+        $this->message_db->addMessage($category, $author, $message);
+        $this->showCatalogPage();
+    }
+    
     private function submitReview() {
         $review = filter_input(INPUT_POST, 'review', FILTER_SANITIZE_STRING);
         $message_id = filter_input(INPUT_POST, 'message_id', FILTER_SANITIZE_STRING);
         $this->message_db->addReview($message_id, $review);
-        $this->showReviewsPage();
+        $this->showCatalogPage();
     }
     
     private function signGuestBook() {
