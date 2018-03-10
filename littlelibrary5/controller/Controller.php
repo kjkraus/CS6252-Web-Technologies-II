@@ -103,6 +103,8 @@ class Controller {
         
         if (isset($_SESSION['holds'])) {
             $this->hold_list = $_SESSION['holds'];
+        } else {
+            $this->hold_list = array();
         }
         
         $book_catalog = array();
