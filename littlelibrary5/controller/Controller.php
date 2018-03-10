@@ -72,34 +72,47 @@ class Controller {
      */
     private function placeHold() {
         $book_id = filter_input(INPUT_POST, 'book_id', FILTER_SANITIZE_STRING);
-        
-        // PART 1. add the book to the session array and pass all books in the
-        // session array to the template holdlist.tpl for display
         session_start();
-        if (! isset($_SESSION['holds'])) {
-            $_SESSION['holds'] = array();
-        }
-        array_push($_SESSION['holds'], $book_id);
         
-        $holds_catalog = $_SESSION['holds'];
-        $this->view->assign('holds_catalog', $holds_catalog);
+        if (isset($_SESSION['holds'])) {
+            $this->hold_list = $_SESSION['holds'];
+        } else {
+            $this->hold_list = array();
+        }
+        $this->hold_list[] = $book_id;
+        $_SESSION['holds'] = $this->hold_list;
+        
+        
+        $book_catalog = array();
+        foreach ($this->hold_list as $book_id) {
+        $book = $this->library_db->getBook($book_id);
+        array_push($book_catalog, $book);
+        }
+        $this->view->assign('book_catalog', $book_catalog);
         $this->view->display('holdlist.tpl');
-    }
+        }
     
     private function processSubmitHold() {
-        // Here the application would process the list of holds. We won't worry about this.
-        // You only need to clear all session data and end the session.
+        session_start();
         
-        //PART 3.
-        //When the button “Submit hold request” is clicked, all books submitted for a hold should be
-        //displayed and the corresponding confirmation message that the holds have been placed should
-        //be displayed. All session data should be removed and the session should be terminated. Thus, if
-        //a new book is selected for a hold from the catalog page after the hold request has been
-        //submitted, the books previously submitted for a hold should not be listed again.
+        if (! isset($_SESSION['holds'])) {
+            $this->view->assign('confirmation', 'There are no books on hold.');
+        } else {
+        $this->view->assign('confirmation', 'The holds for the above books have been placed succesfully.');
+        }
         
-        $this->view->assign('confirmation', 'No books have been selected.');
-        //$this->view->assign('confirmation', 'The holds for the above books have been placed succesfully.');
+        if (isset($_SESSION['holds'])) {
+            $this->hold_list = $_SESSION['holds'];
+        }
+        
+        $book_catalog = array();
+        foreach ($this->hold_list as $book_id) {
+            $book = $this->library_db->getBook($book_id);
+            array_push($book_catalog, $book);
+        }
+        $this->view->assign('book_catalog', $book_catalog);
         $this->view->display('holdlist.tpl');
+        session_destroy();
     }
 
     private function showCatalogPage() {

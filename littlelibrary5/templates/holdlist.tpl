@@ -4,16 +4,9 @@
 
 <main>
 	<h2>You have selected the following books for a hold:</h2>
-	<!-- PART 2. Once a book has been selected for a hold, all books selected for a hold should be displayed on
-	the corresponding page, i.e. template holdlist.tpl. You should display at least the title and
-	author of each selected book.
-	Display the books selected for a hold -->
 	<table>
-	{foreach item=hold from=$holds_catalog}
+	{foreach item=book from=$book_catalog}
 		<tr>
-		    <td>
-				<img src="{$book->getImage()}" alt="Cover Image" width="100">
-			</td>
 			<td>
 				<b>{$book->getTitle()} </b><br>
 				by {$book->getAuthor()}
