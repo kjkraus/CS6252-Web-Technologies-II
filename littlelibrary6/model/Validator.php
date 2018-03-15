@@ -165,7 +165,7 @@ class Validator {
 		    return;
 		}
 		// Call the pattern method to check for valid number of digits (9 or 10).
-		$pattern = '~(\d{9}|\d{10})~'; //TODO fix 9 or 10 digits only with parenthesis and spaces
+		$pattern = '~\(?(\d{3})\)?[\s-]?\d{3}[\s-]?\d{4}~';  //10 digits with all other chars
 		if (preg_match_all($pattern, $value) === 0) {
 		    $field->setError('The phone field must contain 9 or 10 digits.');
 		}
@@ -202,7 +202,18 @@ class Validator {
 		    $field->setError('The date field is not in a valid format.');
 		}
 		    return;
-		//TODO use PHP function checkdate to check for proper values for month, day, year
+		if (preg_match_all($pattern2, $value) === 1) {
+		    list($year , $month , $day) = explode('-',$value);
+		    if (checkdate($month , $day , $year) !== 1) {
+		    $field->setError('The date is not a valid date.');
+		    }
+		} return;
+		if (preg_match_all($pattern1, $value) === 1) {
+		    list($month, $day, $year) = explode('-',$value);
+		    if (checkdate($month , $day , $year) !== 1) {
+		        $field->setError('The date is not a valid date.');
+		    }
+		} return;
 	}
 	
 	/*
