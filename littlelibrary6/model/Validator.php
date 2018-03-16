@@ -164,10 +164,11 @@ class Validator {
 		    $field->setError('The phone field can have at most 14 characters.');
 		    return;
 		}
-		// Call the pattern method to check for valid number of digits (9 or 10).
-		$pattern = '~\(?(\d{3})\)?[\s-]?\d{3}[\s-]?\d{4}~';  //10 digits with all other chars
-		if (preg_match_all($pattern, $value) === 0) {
-		    $field->setError('The phone field must contain 9 or 10 digits.');
+		// Call the pattern method to check for valid number of digits (10 or 11).
+		$pattern1 = '~^\D*(\d\D*){10}$~';
+		$pattern2 = '~^\D*(\d\D*){11}$~';
+		if ((preg_match_all($pattern1, $value) === 0) && (preg_match_all($pattern2, $value) === 0)) {
+		    $field->setError('The phone field must contain 10 or 11 digits.');
 		}
 		// Call the pattern method to check for valid characters
 		$pattern = '~^[0-9\s-()]+$~';
@@ -259,8 +260,8 @@ class Validator {
 			return;
 		}
 		// Look for forbidden words - anarchy, rebellion, terrorist
-		$pattern = '~{^/(anarchy|rebellion|terrorist)([a-z0-9]+)~'; // TODO fix 
-		if (preg_match($pattern, $value) === 0) {
+		$pattern = '~^.*(?:anarchy|terrorist|rebellion).*$~';
+		if (preg_match($pattern, $value) === 1) {
 		    $field->setError('The comments field cannot contain anarchy, rebellion, or terrorist.');
 		}
 		// Check for the length
