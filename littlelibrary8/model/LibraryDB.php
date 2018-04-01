@@ -172,14 +172,15 @@ class LibraryDB {
 	 * @return boolean True if the update operation was successful, False otherwise
 	 */
 	public function addUser($firstName, $lastName, $email, $phone, $password) {
+	    $digest = password_hash($password, PASSWORD_BCRYPT);
 	    $query = 'INSERT INTO users	(firstName, lastName, email, phone, password)
-				VALUES (:firstName, :lastName, :email, :phone, :password)';
+				VALUES (:firstName, :lastName, :email, :phone, :digest)';
 	    $statement = $this->db->prepare($query);
 	    $statement->bindValue(':firstName', $firstName);
 	    $statement->bindValue(':lastName', $lastName);
 	    $statement->bindValue(':email', $email);
 	    $statement->bindValue(':phone', $phone);
-	    $statement->bindValue(':password', $password);
+	    $statement->bindValue(':digest', $digest);
 	    $statement->execute();
 	    $success = ($statement->rowCount() == 1);
 	    $statement->closeCursor();
