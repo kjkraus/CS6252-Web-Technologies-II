@@ -186,5 +186,24 @@ class LibraryDB {
 	    $statement->closeCursor();
 	    return $success;
 	}
+	
+	/**
+	 * Returns True if the email/password pair exists in the user table
+	 */
+	public function isValidUser($email, $password) {
+	    $query = 'SELECT password FROM users
+				WHERE email = :email';
+	    $statement = $this->db->prepare($query);
+	    $statement->bindValue(":email", $email);
+	    $statement->execute();
+	    $email = $statement->fetch();
+	    $statement->closeCursor();
+	    if ($email != False) {
+	        if (password_verify( $password, $email['password'])) {
+	            return True;
+	        }
+	    }
+	    return False;
+	}
 }
 ?>

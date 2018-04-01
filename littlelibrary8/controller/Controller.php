@@ -15,7 +15,8 @@ class Controller {
      * setup the controller
      */
     public function __construct() {
-        $this->secure();
+        $this->secureConnection();
+        session_start();
         $this->library_db = new LibraryDB();
         if ($this->library_db->isConnected()) {
             $this->action = '';
@@ -26,12 +27,16 @@ class Controller {
             $this->error_msg = 'unable to connect to the database';
         }
         $this->view = new Smarty();
+        // If a user is logged in, display the logout label
+        if (isset($_SESSION['is_valid_user']) && $_SESSION['is_valid_user'] == True) {
+            $this->view->assign('logInOut', 'Logout');
+        }
     }
     
     /**
      * use a secure connection
      */
-    public function secure() {
+    public function secureConnection() {
         
         $https = filter_input(INPUT_SERVER, 'HTTPS');
         if (!$https) {
@@ -76,6 +81,47 @@ class Controller {
             case 'process_registration_form':
                 $this->processRegistrationPage();
                 break;
+            case 'login_logout' :
+                // Check whether the user is logged in and therefore requests to log out
+                if (isset($_SESSION['is_valid_user']) && $_SESSION['is_valid_user'] == True) {
+                    // Clear session data from memory
+                    $_SESSION = array();
+                    // Clean up the session ID
+                    session_destroy();
+                    // Get seesion cookie name
+                    $name = session_name();
+                    // Ceate expiration date in past
+                    $expire = strtotime('-1 year');
+                    // Get session params
+                    $params = session_get_cookie_params();
+                    $path = $params['path'];
+                    $domain = $params['domain'];
+                    $secure = $params['secure'];
+                    $httponly = $params['httponly'];
+                    setcookie($name, '', $expire, $path, $domain, $secure, $httponly);
+                    
+                    $this->view->assign('message', 'You have successfully logged out.');
+                    $this->view->assign('logInOut', 'Login');
+                }
+                $this->view->display('login.tpl');
+                break;
+            case 'login_user' :
+                $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
+                $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+                
+                if ($this->library_db->isValidUser($email, $password)) {
+                    $_SESSION['is_valid_user'] = True;
+                    $_SESSION['email'] = $email;
+                    header("Location: .");
+                }
+                else {
+                    $this->view->assign('message', 'Invalid login information.');
+                    $this->view->assign('email', $email);
+                    $this->view->display('login.tpl');
+                }
+                break;
+            case 'error' :
+                $this->view->display('error.tpl');
             default:
                 $this->view->assign('error_msg', $this->error_msg);
                 $this->view->display('error.tpl');
@@ -151,7 +197,6 @@ class Controller {
     }
     
     private function showRegistrationPage() {
-        $libraries = $this->library_db->getLibraries();
         $fields = new Fields();
         $fields->addField('firstName', '');
         $fields->addField('lastName', '');
@@ -160,7 +205,6 @@ class Controller {
         $fields->addField('password', '');
         
         // assign smarty variables for the view
-        $this->view->assign('libraries',$libraries);
         $this->view->assign('fields', $fields);
         
         $this->view->display('registration.tpl');

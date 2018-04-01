@@ -24,7 +24,7 @@
 		<span class="error">{$fields->getError('comments')}</span>
 		<label for="idComments">* Comments: </label>
 		<textarea id="myComments" name="comments" rows="2" cols="20">{$fields->getValue('comments')}</textarea>
-		<input type="submit" value="Send Now" id="idSubmit">
+		<input type="submit" value="Submit" id="idSubmit">
 	</form>
 </main>
 

@@ -177,6 +177,56 @@ class Validator {
 	}
 	
 	/*
+	 * validate the password field
+	 *
+	 * The password should be a minimum of 12 characters in length.
+	 * Must contain at least one lowercase letter.
+	 * Must contain at least one uppercase letter.
+	 * Must contain at least one number.
+	 * Must contain at least one special character among ! # $ % & ( ) * + , - . : ? = ;
+	 *
+	 * In case of an invalid name, the error of the password
+	 * field is set to an error message.
+	 
+	public static function validatePassword($field) {
+	    // check if the field has a value
+	    $value = $field->getValue();
+	    if ($value === '') {
+	        if ($field->isRequired()) {
+	            $field->setError('Enter a password.');
+	        }
+	        return;
+	    }
+	    // Call the pattern method to check for valid characters
+	    $pattern = '~^[a-zA-Z0-9!#$%&()*+,-.:?=;]+$~';
+	    if (preg_match($pattern, $value) === 0) {
+	        $field->setError('The password contains invalid characters.');
+	        return;
+	    }
+	    // Check for the length
+	    if (strlen($value) < 12) {
+	        $field->setError('The password must be a minimum of 12 characters in length.');
+	        return;
+	    }
+	    $number_uppers = preg_match_all('/[A-Z]/', $value);
+	    if ($number_uppers < 1) {
+	        $field->setError('The password must contain at least one uppercase letter.');
+	        return;
+	    }
+	    $number_lowers = preg_match_all('/[a-z]/', $value);
+	    if ($number_lowers < 1) {
+	        $field->setError('The password must contain at least one lowercase letter.');
+	        return;
+	    }
+	    $number_digits = preg_match_all('/[0-9]/', $value);
+	    if ($number_digits < 1) {
+	        $field->setError('The password must contain at least one number.');
+	        return;
+	    }
+	}
+	*/
+	
+	/*
 	 * validate a date field
 	 *
 	 * The date must follow the MM/DD/YYYY or YYY-MM-DD format
@@ -275,5 +325,6 @@ class Validator {
 		  $field->setError('Please abstain from curse words.');
 		}
 	}
+
 }
 ?>

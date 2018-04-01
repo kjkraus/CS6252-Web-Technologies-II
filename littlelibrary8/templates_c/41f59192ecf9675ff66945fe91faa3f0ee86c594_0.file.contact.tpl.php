@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2018-03-30 12:49:38
+/* Smarty version 3.1.30, created on 2018-04-01 21:13:13
   from "C:\xampp\htdocs\littlelibrary8\templates\contact.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5abe1642e05c42_25013456',
+  'unifunc' => 'content_5ac12f49c52f08_36259329',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '41f59192ecf9675ff66945fe91faa3f0ee86c594' => 
     array (
       0 => 'C:\\xampp\\htdocs\\littlelibrary8\\templates\\contact.tpl',
-      1 => 1509365944,
+      1 => 1522609322,
       2 => 'file',
     ),
   ),
@@ -24,7 +24,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:shared/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5abe1642e05c42_25013456 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ac12f49c52f08_36259329 (Smarty_Internal_Template $_smarty_tpl) {
 if (!is_callable('smarty_function_html_options')) require_once 'C:\\xampp\\htdocs\\smarty\\libs\\plugins\\function.html_options.php';
 $_smarty_tpl->_subTemplateRender("file:shared/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
@@ -73,7 +73,7 @@ echo smarty_function_html_options(array('name'=>'library','options'=>$_smarty_tp
 		<label for="idComments">* Comments: </label>
 		<textarea id="myComments" name="comments" rows="2" cols="20"><?php echo $_smarty_tpl->tpl_vars['fields']->value->getValue('comments');?>
 </textarea>
-		<input type="submit" value="Send Now" id="idSubmit">
+		<input type="submit" value="Submit" id="idSubmit">
 	</form>
 </main>
 
