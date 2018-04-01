@@ -205,5 +205,19 @@ class LibraryDB {
 	    }
 	    return False;
 	}
+	
+	/**
+	 * Returns the user's first name for personalizing the website
+	 */
+	public function getUserFirstName($email) {
+	    $query = 'SELECT firstName FROM users
+				WHERE email = :email';
+	    $statement = $this->db->prepare($query);
+	    $statement->bindValue(":email", $email);
+	    $statement->execute();
+	    $firstName = $statement->fetch();
+	    $statement->closeCursor();
+	    return $firstName;
+	}
 }
 ?>

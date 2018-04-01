@@ -29,6 +29,9 @@ class Controller {
         $this->view = new Smarty();
         // If a user is logged in, display the logout label
         if (isset($_SESSION['is_valid_user']) && $_SESSION['is_valid_user'] == True) {
+            $firstName = ($this->library_db->getUserFirstName($_SESSION['email']));
+            $_SESSION['firstName'] = $firstName;
+            $this->view->assign('firstName', $firstName);
             $this->view->assign('logInOut', 'Logout');
         }
     }
